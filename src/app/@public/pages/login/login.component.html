@@ -1,0 +1,189 @@
+
+      <!-- ========== signin-section start ========== -->
+      <section class="signin-section">
+        <div class="container-fluid">
+          <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+            
+              <!-- end col -->
+        
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+          <div class="row g-0 auth-row">
+            <div class="col-lg-6">
+              <div class="auth-cover-wrapper bg-primary-100">
+                <div class="auth-cover">
+                  <div class="title text-center">
+                    <h1 class="text-primary mb-10">Bienvenido</h1>
+                    <p class="text-medium">
+                      Inicia sesión con tu cuenta para continuar
+                    </p>
+                  </div>
+                  <div class="cover-image">
+                    <img src="assets/images/auth/signin-image.svg" alt="" />
+                  </div>
+                  <div class="shape-image">
+                    <img src="assets/images/auth/shape.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+            <div class="col-lg-6">
+              <div class="signin-wrapper">
+                <div class="form-wrapper">
+                  <h6 class="mb-15">Inicio de sesión</h6>
+                  <p class="text-sm mb-25">
+                    
+                  </p>
+                  <form [formGroup]="loginForm" 
+                        (ngSubmit)="login()"
+                        autocomplete="off">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Correo</label>
+                          <input type="email" placeholder="Correo" formControlName="email"/>
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Contraseña</label>
+                          <input type="password" placeholder="Contraseña" formControlName="password"/>
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-xxl-6 col-lg-12 col-md-6">
+                        <div class="form-check checkbox-style mb-30">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="checkbox-remember"
+                            formControlName="recordarme"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="checkbox-remember"
+                          >
+                            Recordar mi usuario</label
+                          >
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-xxl-6 col-lg-12 col-md-6">
+                        <div
+                          class="text-start text-md-end text-lg-start text-xxl-end mb-30"
+                        >
+                          <a class="pointer"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#exampleModal">Crear Cuenta</a>
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div
+                          class="button-group d-flex justify-content-center flex-wrap"
+                        >
+                          <button
+                          type="submit"
+                            class="main-btn primary-btn btn-hover w-100 text-center"
+                            
+                          >
+                            Iniciar Sesión
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end row -->
+                  </form>
+                
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+        </div>
+      </section>
+      <!-- ========== signin-section end ========== -->
+
+          <!-- MODAL VERIFICACION DE CORREO  -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Registro de Usuario</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+                    <div class="input-style-1">
+                      
+                       
+                    </div>
+
+                    <div class="input-style-1">
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Nombre" formControlName="name"/>
+                        <small class="text-danger" *ngIf="campoNoValido('name')">campo requerido o no
+                          válido</small>
+                    </div>
+                    <div class="input-style-1">
+                        <label>Correo eletrónico</label>
+                        <input type="text" placeholder="Correo eletrónico" formControlName="email"/>
+                        <small class="text-danger" *ngIf="campoNoValido('email')">campo requerido o no
+                          válido</small>
+                    </div>
+                    <div class="input-style-1">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="Contraseña"  formControlName="password"/>
+                        <small class="text-danger" *ngIf="campoNoValido('password')">campo requerido o no
+                          válido</small>
+                    </div>
+                    <div class="input-style-1">
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" placeholder="Contraseña" formControlName="password2" />
+                        <small class="text-danger" *ngIf="campoNoValido('password2')">campo requerido o no
+                          válido</small>
+                          <small *ngIf="contrasenasDistintas()" class="text-danger">Contrasenas deben ser iguales</small>
+                    </div>
+                  
+                    
+                    <div class="select-style-1">
+                      <label>Sexo<small class="text-danger">*</small></label>
+                      <div class="select-position">
+                          <select formControlName="gender">
+                              <option value="">Selecciona una opción</option>
+                              <option *ngFor="let genero of generos">{{genero.desc}}</option>
+
+                          </select>
+                          <small class="text-danger" *ngIf="campoNoValido('gender')">campo requerido o no
+                              válido</small>
+
+                      </div>
+                  </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn light-btn" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn primary-btn">Confirmar</button>
+                    </div>
+                  </form>
+                  
+                  <div class="alert-box primary-alert pl-100">
+                  
+                  
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+          <!-- FIN VERIFICACION DE CORREO  -->
+

@@ -1,0 +1,47 @@
+  <!-- ======== sidebar-nav start =========== -->
+  <aside class="sidebar-nav-wrapper">
+    <div class="navbar-logo">
+      <a href="index.html">
+        <h3 style="color: white;">PhoneDoc</h3>
+ 
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="nav-item active">
+          <a [routerLink]="['/admin']" >
+            <span class="icon"><i class="mdi mdi-home"></i></span>
+            <span class="text">Inicio</span>
+          </a>
+        </li>
+        
+        <li class="nav-item nav-item-has-children">
+          <a
+            href="#0"
+            class="collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#ddmenu_3"
+            aria-controls="ddmenu_3"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icon"><i class="mdi mdi-cog-sync"></i></span>
+            <span class="text">Administración</span>
+          </a>
+          <ul id="ddmenu_3" class="collapse dropdown-nav">
+            <li>
+              <a [routerLink]="['/admin/nueva-persona']" routerLinkActive="router-link-active" >
+                <i class="lni lni-arrow-right"></i> Nueva persona
+              </a>
+            </li>
+          </ul>
+        </li>
+
+       
+                  
+      </ul>
+    </nav>
+  </aside>
+  
+  <div class="overlay"></div>
+  <!-- ======== sidebar-nav end =========== -->

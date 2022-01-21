@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30 shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="title d-flex flex-wrap align-items-center justify-content-between mb-30">
+                <div class="left">
+                    <a href="#0" class="main-btn active-btn rounded-md btn-hover" 
+                                 data-bs-toggle="modal" 
+                                 data-bs-target="#exampleModal"
+                                 data-bs-whatever="@mdo"><i class="mdi mdi-plus"></i>Nuevo Telefono</a>
+                </div>
+                <div class="right">
+                    <div class="input-style-1">
+                      
+                      </div>
+                </div>
+
+            </div>
+
+            <div class="table-wrapper table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th><h6>#</h6></th>
+                      <th><h6>Marca</h6></th>
+                      <th><h6>Modelo</h6></th>
+                      <th><h6>IMEI</h6></th>
+                      <th><h6>Nueva Reparación</h6></th>
+                    </tr>
+                    <!-- end table row-->
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let phone of phoneList;let i =index">
+                      <td>
+                        <div class="min-width">
+                        <p>{{i+1}}</p>
+                        </div>
+                      </td>
+                      <td class="min-width">
+                        <p>{{phone.marca}}</p>
+                      </td>
+                      <td class="min-width">
+                        <p><a>{{phone.modelo}}</a></p>
+                      </td>
+                      <td class="min-width">
+                        <p><a >{{phone.telefono_id}}</a></p>
+                      </td>
+
+                                        
+                        <td class="min-width">
+                          <span [routerLink]="['/admin/new-repair',phone.telefono_id]" class="status-btn light-btn pointer">
+                              <i class="mdi mdi-dots-horizontal"></i>
+                            </span>
+                      </td>
+                    </tr>
+                  
+                    <!-- end table row -->
+
+                   
+                  </tbody>
+                </table>
+                <!-- end table -->
+             
+              </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form [formGroup]="phoneForm"  (ngSubmit)="sendForm()">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nuevo Teléfono</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-style-1">
+                <label>Marca</label>
+                <input type="text" placeholder="Marca"  formControlName="company"/>
+                <small class="text-danger" *ngIf="campoNoValido('company')">campo requerido o no válido</small>
+            </div>
+            <div class="input-style-1">
+                <label>Modelo</label>
+                <input type="text" placeholder="Modelo" formControlName="model"/>
+                <small class="text-danger" *ngIf="campoNoValido('model')">campo requerido o no válido</small>
+            </div>
+            <div class="input-style-1">
+                <label>IMEI</label>
+                <input type="text" placeholder="IMEI" formControlName="imei" />
+                <small class="text-danger" *ngIf="campoNoValido('imei')">campo requerido o no válido</small>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn light-btn" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn primary-btn">Guardar</button>
+        </div>
+   
+      </div>
+    </div>
+</form>
+  </div>

@@ -1,0 +1,173 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30 shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="title d-flex flex-wrap align-items-center justify-content-between">
+                <div class="left">
+                    <h5 class="mb-10">Registro de Clientes</h5>
+                </div>
+                <div class="rigth mt-10">
+                    <div class="select-style-1">
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- DATOS PERSONA -->
+<div class="row" >
+    <div class="col-lg-12">
+        <!-- input style start -->
+
+        <form [formGroup]="personForm" (ngSubmit)="sendForm()">
+            <div class="card-style mb-30">
+
+                <h6 class="mb-25">Datos Persona</h6>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-style-1">
+                            <label>Nombre<small class="text-danger">*</small></label>
+                            <input type="text" placeholder="Nombre" formControlName="name" class="form-control" />
+                            <small class="text-danger" *ngIf="campoNoValido('name')">campo requerido o no válido</small>
+                        </div>
+
+                        <div class="input-style-1">
+                            <label>Correo<small class="text-danger">*</small></label>
+                            <input type="text" placeholder="Correo" formControlName="email" />
+                            <small class="text-danger" *ngIf="campoNoValido('email')">campo requerido o no
+                                válido</small>
+                        </div>
+                    
+
+                        <div class="select-style-1">
+                            <label>Sexo<small class="text-danger">*</small></label>
+                            <div class="select-position">
+                                <select formControlName="gender">
+                                    <option value="">Selecciona una opción</option>
+                                    <option *ngFor="let genero of generos">{{genero.desc}}</option>
+
+                                </select>
+                                <small class="text-danger" *ngIf="campoNoValido('gender')">campo requerido o no
+                                    válido</small>
+
+                            </div>
+                        </div>
+
+                        <div  class="input-style-1">
+                            <label>Número de teléfono</label>
+                            <input type="text" placeholder="Número de teléfono" formControlName="phoneNumber" />
+                            <small class="text-danger" *ngIf="campoNoValido('phoneNumber')">campo requerido o no
+                                válido</small>
+                        </div>
+
+
+                    </div>
+                    <div  class="col-lg-6 mt-4">
+                        <div class="input-style-3">
+                            <textarea placeholder="Dirección" rows="5" formControlName="address"></textarea>
+                            <span class="icon"><i class="lni lni-text-format"></i></span>
+                            <small class="text-danger" *ngIf="campoNoValido('address')">campo requerido o no
+                                válido</small>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="submit"
+                            class="main-btn primary-btn rounded-md btn-hover float-end">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- ======= input style end ======= -->
+    </div>
+</div>
+<!-- FIN DATOS PERSONA -->
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30 shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="title d-flex flex-wrap align-items-center justify-content-between">
+                <div class="left">
+                  <h6 class="text-medium mb-30">Clientes</h6>
+                </div>
+                <div class="right">
+                </div>
+              </div>
+            <div class="table-wrapper table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6>#</h6>
+                            </th>
+                            <th>
+                                <h6>Nombre</h6>
+                            </th>
+                            <th>
+                                <h6>Contacto</h6>
+                            </th>
+                            <th>
+                                <h6>Usuario Registro</h6>
+                            </th>
+                            <th>
+                                <h6>Teléfono</h6>
+                            </th>
+                           
+
+                        </tr>
+                        <!-- end table row-->
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clientList; let i = index">
+                            <td>
+                                <div class="min-width">
+                                    <p>{{i+1}}</p>
+                                </div>
+                            </td>
+                            <td class="min-width">
+                                <p>{{client.nombre}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p><a>{{client.numero_telefono}}</a></p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{client.usr_registro }}</p>
+                                
+                            </td>
+                            <td class="min-width">
+                               <span class="pointer" [routerLink]="['/admin/new-phone',client.cliente_id]" >
+                                <i class="mdi mdi-plus"></i>
+                            </span> 
+                            </td>
+                            
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+                <!-- end table -->
+              
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <a (click)="cambiarPagina(-10)" class="main-btn light-btn rounded-full btn-hover mr-5">Anterior</a>
+                        <a (click)="cambiarPagina(10)" class="main-btn light-btn rounded-full btn-hover">Siguiente</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
